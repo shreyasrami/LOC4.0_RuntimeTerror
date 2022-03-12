@@ -22,7 +22,7 @@ class Funding(models.Model):
     image = models.ImageField(upload_to=get_Funding_Image, default='no-image')
     is_closed = models.BooleanField(default=False)
     is_verified = models.BooleanField(default=False)
-    ngo_certficate = models.ImageField(
+    ngo_certificate = models.ImageField(
         upload_to=get_ngo_certificate, default='no-image')
 
 
