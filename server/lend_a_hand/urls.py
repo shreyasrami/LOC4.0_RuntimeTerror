@@ -46,5 +46,8 @@ urlpatterns = [
          name="schema-swagger-ui",),
     path('user/', include('account.urls')),
     path('events/', include('events.urls')),
-    path('funding/', include('crowdfunding.urls'))
+    path('funding/', include('crowdfunding.urls')),
+    path('payment/', include('payment.urls')),
+
+    
 ]

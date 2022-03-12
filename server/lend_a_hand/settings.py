@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'drf_yasg',
     'account.apps.AccountConfig',
+    'payment.apps.PaymentConfig',
     'crowdfunding.apps.CrowdfundingConfig',
     'events.apps.EventsConfig',
 ]

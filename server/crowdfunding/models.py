@@ -38,10 +38,3 @@ class FundingComments(models.Model):
     message = models.CharField(max_length=1000)
     message_date = models.DateTimeField(auto_now=True)
 
-
-class Donation(models.Model):
-    donar_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    funding_id = models.ForeignKey(Funding, on_delete=models.CASCADE)
-    amount_donated = models.IntegerField()
-    donation_time = models.DateTimeField(auto_now=True)
-    donation_message = models.CharField(max_length=1000, null=True, blank=True)

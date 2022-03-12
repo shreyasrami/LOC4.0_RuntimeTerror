@@ -4,4 +4,3 @@ from .models import *
 admin.site.register(Funding)
 admin.site.register(FundingComments)
 admin.site.register(FundingUpdates)
-admin.site.register(Donation)
