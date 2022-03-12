@@ -1,0 +1,59 @@
+<Container>
+        <Row>
+          <Col>
+            <Card.Body>
+              <Card.Title>
+                Together Let's bring smile on 7.6 billion faces!
+              </Card.Title>
+              <Card.Text>
+                With supporting text below as a natural lead-in to additional
+                content.
+              </Card.Text>
+              <Button variant="primary">Donate!</Button>
+            </Card.Body>
+          </Col>
+          <Col>
+            <Card.Img variant="top" src={`${children}`} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Card.Img variant="top" src={`${children}`}/>
+          </Col>
+          <Col>
+            <Card.Body>
+              <Card.Title></Card.Title>
+              <Card.Text>
+                An act of kindness no matter how small is never wasted!
+              </Card.Text>
+              <Button variant="primary">Volunteer!</Button>
+            </Card.Body>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Card.Body>
+              <Card.Title> Bigger the heart better the cause!</Card.Title>
+              <Card.Text>Start a fundraiser!</Card.Text>
+              <Button variant="primary">Go somewhere</Button>
+            </Card.Body>
+          </Col>
+          <Col>
+            <Card.Img variant="top" src={`${children}`} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Card.Img variant="top" src={`${children}`} />
+          </Col>
+          <Col>
+            <Card.Body>
+              <Card.Title>Special title treatment</Card.Title>
+              <Card.Text>
+                With supporting text below as a natural lead-in to additional
+                content.
+              </Card.Text>
+              <Button variant="primary">Go somewhere</Button>
+            </Card.Body>
+          </Col>
+        </Row>
