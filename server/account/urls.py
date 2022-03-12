@@ -17,8 +17,9 @@ schema_view = get_schema_view(
 
 urlpatterns = [
 
-    path('',schema_view.with_ui("swagger", cache_timeout=0),name="schema-swagger-ui",),
-    path('user/register/', RegisterUserView.as_view(),name='register_user'),
+    path('', schema_view.with_ui("swagger", cache_timeout=0),
+         name="schema-swagger-ui",),
+    path('user/register/', RegisterUserView.as_view(), name='register_user'),
     path('user/login/', LoginUserView.as_view(), name='token_obtain_pair'),
     path('user-details/<user_id>', UserDetailsView.as_view(), name='user_details'),
 ]
