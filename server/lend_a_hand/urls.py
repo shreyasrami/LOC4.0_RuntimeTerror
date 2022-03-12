@@ -15,8 +15,36 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from rest_framework import permissions
+from drf_yasg.generators import OpenAPISchemaGenerator
+import os
+
+
+class SchemaGenerator(OpenAPISchemaGenerator):
+    def get_schema(self, request=None, public=False):
+        schema = super(SchemaGenerator, self).get_schema(request, public)
+        schema.basePath = os.path.join(schema.basePath, '')
+        return schema
+
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="My Project API",
+        default_version="v3",
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+    generator_class=SchemaGenerator,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('account.urls')),
+    path('', schema_view.with_ui("swagger", cache_timeout=0),
+         name="schema-swagger-ui",),
+    path('user/', include('account.urls')),
+    path('events/', include('events.urls')),
+    path('funding/', include('crowdfunding.urls'))
 ]
