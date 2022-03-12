@@ -85,7 +85,7 @@ TEMPLATES = [
 
 TEMPLATE_LOADERS = (
 
-'django.template.loaders.eggs.Loader',
+    'django.template.loaders.eggs.Loader',
 
 )
 
@@ -162,11 +162,20 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES' : (
+    'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        #'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
     )
 }
 
 django_heroku.settings(locals())
 
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+#  to upload images
+MEDIA_URL = '/lend_images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uni_images')

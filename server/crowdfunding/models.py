@@ -4,7 +4,11 @@ from account.models import User
 
 
 def get_Funding_Image(self, filename):
-    return 'images/{0}/{1}'.format(self.creator_id.id, filename)
+    return 'funding/{0}/image/{1}'.format(self.creator_id.id, filename)
+
+
+def get_ngo_certificate(self, filename):
+    return 'funding/{0}/certificate/{1}'.format(self.creator_id.id, filename)
 
 
 class Funding(models.Model):
@@ -17,6 +21,9 @@ class Funding(models.Model):
     description = models.CharField(max_length=2000)
     image = models.ImageField(upload_to=get_Funding_Image, default='no-image')
     is_closed = models.BooleanField(default=False)
+    is_verified = models.BooleanField(default=False)
+    ngo_certficate = models.ImageField(
+        upload_to=get_ngo_certificate, default='no-image')
 
 
 class FundingUpdates(models.Model):
