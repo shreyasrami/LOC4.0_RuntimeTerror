@@ -5,7 +5,11 @@ import Account from './pages/account/account.js';
 import Dashboard from './components/dashboard/dashboard.js';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from './pages/landingpage/landingpage.js';
-import ButtonCard from './components/buttoncard/buttoncard.js'
+import IndividualCards from './components/individualcards/individualcards';
+import HomePage from './pages/homepage/homepage.js'
+import DonorPage from './pages/donorpage/donorpage.js'
+import LaunchEvent from './components/forms/launchevents.js'
+
 
 
 function App() {
@@ -18,7 +22,14 @@ function App() {
       //   </Routes>
       // </Router> */}
       // <LandingPage/>
-      <ButtonCard/>
+      // <ButtonCard/>
+      // <IndividualCards/>
+      // <HomePage/>
+      // home page import not workingggggggggggggggggggg stuppid app js not loading when called
+      // <DonorPage/>
+      <LaunchEvent/>
+    
+
     
 
   );
