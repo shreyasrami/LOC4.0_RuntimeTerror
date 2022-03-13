@@ -9,6 +9,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import {connect} from 'react-redux'
 
 
 const useStyles = makeStyles(theme => ({
@@ -36,10 +37,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Features = () => {
+const FundRaiser = ({ngoFundingData,ngoEventData}) => {
   const classes = useStyles();
   const cards=[1,2,3,4,5]
-
   return (
 
     <>
@@ -91,17 +91,17 @@ const Features = () => {
     <Container  component="section" maxWidth="lg" className={classes.root}>
     
       <Button style={{backgroundColor:'#14274E' , color:'white', height:'50px', width:'1200px' , position :'sticky', marginBottom:'20px'}}variant="contained" disabled>
-       Donate Now!
+       Start a fundraiser!
       </Button>
    
       <Grid container spacing={3} alignItems="stretch">
    
-            {cards.map((card) => (
+            {ngoFundingData.map((card) => (
                   <Card sx={{ maxWidth: 345 }} className='m-2'>
                     <CardMedia
                       component="img"
                       height="140"
-                      image="/static/images/cards/contemplative-reptile.jpg"
+                      image={`http://127.0.0.1:8000/${card.image}`}
                       alt="green iguana"
                     />
                     <CardContent>
@@ -122,17 +122,18 @@ const Features = () => {
       </Grid>
       
       <Button style={{backgroundColor:'#14274E' , color:'white', height:'50px', width:'1200px' , position :'sticky', marginTop :'20px',  marginBottom :'20px'}}variant="contained" disabled>
-      Volunteer in an event!
+      Schedule an event!
     </Button>
     
     <Grid container spacing={3} alignItems="stretch">
    
-    {cards.map((card) => (
+    {
+        ngoEventData.map((card) => (
                   <Card sx={{ maxWidth: 345 }} className='m-2'>
                     <CardMedia
                       component="img"
                       height="140"
-                      image="/static/images/cards/contemplative-reptile.jpg"
+                      image={`http://127.0.0.1:8000/${card.image}`}
                       alt="green iguana"
                     />
                     <CardContent>
@@ -157,4 +158,8 @@ const Features = () => {
   );
 };
 
-export default Features;
+const mapStateToProps = state => ({
+    ngoFundingData : state.ngo.fundingdata,
+    ngoEventData : state.ngo.eventData,
+})
+export default connect(mapStateToProps)(FundRaiser);

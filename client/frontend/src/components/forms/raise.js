@@ -38,7 +38,7 @@ const useStyles = makeStyles({
   },
 });
 
-function EventRegister() {
+function Raise() {
   const classes = useStyles();
   const [name, setName] = useState("");
   const [time, setTime] = useState("");
@@ -51,7 +51,7 @@ function EventRegister() {
   const [type, setType] = useState("");
   // const [name, setName] = useState("");
 
-  const LaunchEvents = async () => {
+  const handleSubmit= async () => {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -214,7 +214,7 @@ function EventRegister() {
                       label: classes.label,
                     }}
                     fullWidth
-                    onClick={FormSubmitHandler}
+                    onClick={handleSubmit}
                   >
                     Submit
                   </Button>
@@ -228,4 +228,4 @@ function EventRegister() {
   );
 }
 
-export default LaunchEvents;
+export default Raise;

@@ -33,7 +33,7 @@ export default function SignUpSide({setJump}) {
         password:password
       }
       try{
-          const response = await axios.post('https://recommender-model.herokuapp.com/user/register/', JSON.stringify(data), {
+          const response = await axios.post('http://127.0.0.1:8000/user/register/', JSON.stringify(data), {
               headers:{
                   'Content-Type': 'application/json',
                   'accept': 'application/json'

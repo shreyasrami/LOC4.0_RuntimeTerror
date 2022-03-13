@@ -1,4 +1,4 @@
-import { Grid, Button, Typography } from "@mui/material";
+import { Grid, Button, Typography, Divider } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -15,13 +15,17 @@ import MenuItem from "@mui/material/MenuItem";
 import { Row, Col, Card, Image } from "react-bootstrap";
 import home from "../../assests/images/home.jpg";
 import children from "../../assests/images/children.jpg";
+import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom"
 
-export default function LandingPage() {
+function LandingPage({user}) {
   const pages = ["Products", "Pricing", "Blog"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
-
+  const{isAuthenticated} = user;
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -37,118 +41,20 @@ export default function LandingPage() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const handleNavigate = () => {
+    if (isAuthenticated === true){
+      navigate('/homepage')
+      
+    }else{
+      navigate('/Account')
+     
+    }
+
+  }
   // const decoratedOnClick = useAccordionButton(eventKey, onClick);
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar
-          position="static"
-          style={{ background: "transparent", boxShadow: "none" }}
-        >
-          <Container maxWidth="xl">
-            <Toolbar disableGutters>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                color="primary"
-                sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
-              >
-                LOGO
-              </Typography>
 
-              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleOpenNavMenu}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorElNav}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
-                  }}
-                  open={Boolean(anchorElNav)}
-                  onClose={handleCloseNavMenu}
-                  sx={{
-                    display: { xs: "block", md: "none" },
-                  }}
-                >
-                  {pages.map((page) => (
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">{page}</Typography>
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </Box>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-              >
-                LOGO
-              </Typography>
-              <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                {pages.map((page) => (
-                  <Button
-                    key={page}
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    {page}
-                  </Button>
-                ))}
-              </Box>
-
-              <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/2.jpg"
-                    />
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  sx={{ mt: "45px" }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                  {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">{setting}</Typography>
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </Box>
-            </Toolbar>
-          </Container>
-        </AppBar>
-      </Box>
       <Grid
         container
         display="flex"
@@ -174,8 +80,8 @@ export default function LandingPage() {
               <Typography
                 style={{
                   fontFamily: "Roboto",
-                  fontSize: "1.5rem",
-                  paddingBottom: "20px",
+                  fontSize: "2rem",
+                  paddingBottom: "30px",
                 }}
               >
                 A non-governmental organization (NGO) is a non-profit group that
@@ -190,82 +96,91 @@ export default function LandingPage() {
               <Button
                 style={{
                   borderRadius: "15px",
-                  backgroundColor: "#49AB94",
+                  backgroundColor: "#14274E",
                   fontSize: "10px",
                   height: "3rem",
                 }}
                 variant="contained"
+                onClick = {() => handleNavigate()}
               >
-                Start a fundraiser / Donate as a user!
+                Explore!
               </Button>
             </Grid>
           </div>
         </Grid>
         <Grid item sm={6} md={6} className="right-box"></Grid>
       </Grid>
-      <Container fluid={true}>
+      <Container >
         <Row className="mt-5">
           <Col>
             <Card.Body>
-              <Card.Title>
+              <Card.Title style={{fontSize:"2.5rem", color:'#7A58FF'}} > 
                 Together Let's bring smile on 7.6 billion faces!
               </Card.Title>
-              <Card.Text>
+              <Card.Text style={{fontSize:"1.5rem", color:'#9BA4B4'}}>
                 With supporting text below as a natural lead-in to additional
                 content.
               </Card.Text>
-              <Button variant="primary">Donate!</Button>
+              <div onClick = {() => handleNavigate()} style={{display:'inline-flex', alignItems:'center', justifyContent:'center', backgroundColor:'#14274E', margin:'15px', borderRadius:'10px'}}>
+              <Button  style={{ color:'white', borderRadius:'10px'}}>   Donate!</Button>
+              </div>
             </Card.Body>
           </Col>
           <Col>
-          <Image  src={`${children}`} height="213px" width="320px" />
+          <Image  src={`${children}`} height="318px" width="480px" style={{borderRadius:'15px'}} />
           </Col>
         </Row>
         <Row className="mt-5">
           <Col>
-          <Image  src={`${children}`} height="213px" width="320px" />
+          <Image  src={`${children}`} height="318px" width="480px" style={{borderRadius:'15px'}}  />
           </Col>
           <Col>
             <Card.Body>
-              <Card.Title></Card.Title>
-              <Card.Text>
+              <Card.Title style={{fontSize:"2.5rem", color:'#7A58FF'}}>hIII HELLO PLSS DONATE</Card.Title>
+              <Card.Text style={{fontSize:"1.5rem", color:'#9BA4B4'}}>
                 An act of kindness no matter how small is never wasted!
               </Card.Text>
-              <Button variant="primary">Volunteer!</Button>
+              <div style={{display:'inline-flex', alignItems:'center', justifyContent:'center', backgroundColor:'#14274E', margin:'10px', borderRadius:'10px'}}>
+              <Button onClick = {() => handleNavigate()} style={{ color:'white' , borderRadius:'10px'}}>Volunteer!</Button>
+              </div>
             </Card.Body>
           </Col>
         </Row>
         <Row className="mt-5">
           <Col>
             <Card.Body>
-              <Card.Title> Bigger the heart better the cause!</Card.Title>
-              <Card.Text>Start a fundraiser!</Card.Text>
-              <Button variant="primary">Go somewhere</Button>
+              <Card.Title style={{fontSize:"2.5rem", color:'#7A58FF'}}> Bigger the heart better the cause!</Card.Title>
+              <Card.Text style={{fontSize:"1.5rem", color:'#9BA4B4'}}>Start a fundraiser!</Card.Text>
+              <div style={{display:'inline-flex', alignItems:'center', justifyContent:'center', backgroundColor:'#14274E', margin:'15px', borderRadius:'10px'}}>
+              <Button onClick = {() => handleNavigate()} style={{ color:'white' , borderRadius:'10px'}}>Go somewhere</Button>
+              </div>
             </Card.Body>
           </Col>
           <Col>
-            <Image  src={`${children}`} height="213px" width="320px" />
+            <Image  src={`${children}`} height="318px" width="480px" style={{borderRadius:'15px' , borderRadius:'25px'}}  />
           </Col>
         </Row>
         <Row className="mt-5">
           <Col>
-          <Image  src={`${children}`} height="213px" width="320px" />
+          <Image  src={`${children}`} height="318px" width="480px"  style={{borderRadius:'15px' , borderRadius:'25px'}} />
           </Col>
           <Col>
             <Card.Body>
-              <Card.Title>Special title treatment</Card.Title>
-              <Card.Text>
+              <Card.Title style={{fontSize:"2.5rem", color:'#7A58FF'}}>Special title treatment</Card.Title>
+              <Card.Text style={{fontSize:"1.5rem", color:'#9BA4B4'}}>
                 With supporting text below as a natural lead-in to additional
                 content.
               </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
+              <div style={{display:'inline-flex', alignItems:'center', justifyContent:'center', backgroundColor:'#14274E', margin:'15px', borderRadius:'10px'}}>
+              <Button onClick = {() => handleNavigate()} style={{ color:'white', borderRadius:'10px' }}>Go somewhere</Button>
+              </div>
             </Card.Body>
           </Col>
         </Row>
-        <Accordion>
-          <Accordion.Item eventKey="0" flush alwaysOpen="true">
+        <Accordion className="mt-5">
+          <Accordion.Item eventKey="0"  >
             <Accordion.Header>FAQ 1</Accordion.Header>
-            <Accordion.Body>
+            <Accordion.Body className="mt-5">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -275,7 +190,7 @@ export default function LandingPage() {
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </Accordion.Body>
           </Accordion.Item>
-          <Accordion.Item eventKey="1" flush alwaysOpen="true">
+          <Accordion.Item eventKey="1"  >
             <Accordion.Header>FAQ 2</Accordion.Header>
             <Accordion.Body>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -287,7 +202,7 @@ export default function LandingPage() {
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </Accordion.Body>
           </Accordion.Item>
-          <Accordion.Item eventKey="1" flush alwaysOpen="true">
+          <Accordion.Item eventKey="1"  >
             <Accordion.Header>FAQ 2</Accordion.Header>
             <Accordion.Body>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -299,7 +214,7 @@ export default function LandingPage() {
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </Accordion.Body>
           </Accordion.Item>
-          <Accordion.Item eventKey="1" flush alwaysOpen="true">
+          <Accordion.Item eventKey="1" >
             <Accordion.Header>FAQ 2</Accordion.Header>
             <Accordion.Body>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -316,3 +231,8 @@ export default function LandingPage() {
     </>
   );
 }
+
+const mapStateToProps = (state) => ({
+  user:state,
+})
+export default connect(mapStateToProps,null)(LandingPage)

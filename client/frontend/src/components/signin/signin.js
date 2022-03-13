@@ -16,6 +16,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { LockOutlined } from '@mui/icons-material';
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"
+import {connect} from 'react-redux'
+import { setUserData } from '../../redux/user/userActions';
 
 // function Copyright(props) {
 //   return (
@@ -32,7 +34,7 @@ import { useNavigate } from "react-router-dom"
 
 const theme = createTheme();
 
-export default function SignInSide({setJump}) {
+function SignInSide({setJump,setUserData}) {
   const[email,setEmail] = useState("")
   const[password,setPassword] = useState("")
   const navigate = useNavigate();
@@ -44,20 +46,21 @@ export default function SignInSide({setJump}) {
               password: password
           }
           try{
-            const response = await axios.post('https://recommender-model.herokuapp.com/user/login/', JSON.stringify(data), {
+            const response = await axios.post('http://127.0.0.1:8000/user/login/', JSON.stringify(data), {
                   headers:{
                       'Content-Type': 'application/json',
                       'accept': 'application/json'
                   }
               })
             const res = await response.data;
-            console.log(res)
-            if(res.token){
+            console.log(res.success)
+            if(res.success){
                 localStorage.setItem("token",res.token);
+                setUserData(res.data)
                 alert("Login successful");
                 setEmail("");
                 setPassword("");
-                navigate('/dashboard')
+                navigate('/homepage')
             }
           }
           catch(err){
@@ -164,3 +167,8 @@ export default function SignInSide({setJump}) {
     </ThemeProvider>
   );
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  setUserData : (data) => dispatch(setUserData(data))
+})
+export default connect(null, mapDispatchToProps)(SignInSide)
