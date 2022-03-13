@@ -216,7 +216,7 @@ function AttendEvents() {
                     fullWidth
                     onClick={handleSubmit}
                   >
-                    Submit
+                    Attend event
                   </Button>
                 </Grid>
               </Grid>

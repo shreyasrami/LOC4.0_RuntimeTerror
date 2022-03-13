@@ -52,17 +52,17 @@ function Donate() {
   // const [name, setName] = useState("");
 
   const handleSubmit= async () => {
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        // courseId: match.params.id,
-        // name: name,
-        // email: email,
-        // number: number,
-        // description: description,
-      }),
-    };
+    // const requestOptions = {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     // courseId: match.params.id,
+    //     // name: name,
+    //     // email: email,
+    //     // number: number,
+    //     // description: description,
+    //   }),
+    // };
     // setPublicIdd(response.data.secure_url);
     // fetch(`http://localhost:8080/contact/contacForm`, requestOptions)
     //   .then((response) => {
@@ -214,9 +214,9 @@ function Donate() {
                       label: classes.label,
                     }}
                     fullWidth
-                    onClick={handleSubmit}
+                    // onClick={handleSubmit}
                   >
-                    Submit
+                    Donate
                   </Button>
                 </Grid>
               </Grid>

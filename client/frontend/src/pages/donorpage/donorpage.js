@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -9,7 +9,9 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-
+import Chatbot from '../../components/forms/Chatbot';
+import '../../components/forms/chatbot.css'
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,7 +41,19 @@ const useStyles = makeStyles(theme => ({
 const Features = () => {
   const classes = useStyles();
   const cards=[1,2,3,4,5]
-
+  const[step,setStep] = useState(0)
+  const navigate = useNavigate()
+  useEffect(() => {
+    if(step == 1){
+      navigate('/donate')
+    }
+    else if(step == 2){
+      navigate('/attendevents')
+    }
+    else if(step == 3){
+      navigate('/individualCard')
+    }
+  },[step])
   return (
 
     <>
@@ -87,10 +101,12 @@ const Features = () => {
       </Grid>
       <Grid item sm={6} md={6} className="right-box"></Grid>
     </Grid> */}
+    <div className='bot'>
+      <Chatbot />
+    </div>
 
     <Container  component="section" maxWidth="lg" className={classes.root}>
-    
-      <Button style={{backgroundColor:'#14274E' , color:'white', height:'50px', width:'1200px' , position :'sticky', marginBottom:'20px'}}variant="contained" disabled>
+      <Button style={{backgroundColor:'#14274E' , color:'white', height:'50px', width:'1200px' , position :'sticky', marginBottom:'20px'}}variant="contained" onClick = {() => setStep(1)}>
        Donate Now!
       </Button>
    
@@ -106,22 +122,23 @@ const Features = () => {
                     />
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="div">
-                        Lizard
+                        Smiles!! 
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
+                      &#8377;10000+ Raised 10% completed &#8377;100000 Required
+                        {/* Lizards are a widespread group of squamate reptiles, with over 6,000
+                        species, ranging across all continents except Antarctica */}
                       </Typography>
                     </CardContent>
                     <CardActions>
                       <Button size="small">Share</Button>
-                      <Button size="small">Learn More</Button>
+                      <Button size="small"  onClick = {() => setStep(3)}>Learn More</Button>
                     </CardActions>
                   </Card>
             ))}
       </Grid>
       
-      <Button style={{backgroundColor:'#14274E' , color:'white', height:'50px', width:'1200px' , position :'sticky', marginTop :'20px',  marginBottom :'20px'}}variant="contained" disabled>
+      <Button style={{backgroundColor:'#14274E' , color:'white', height:'50px', width:'1200px' , position :'sticky', marginTop :'20px',  marginBottom :'20px'}}variant="contained" onClick = {() => setStep(2)}>
       Volunteer in an event!
     </Button>
     
@@ -137,16 +154,15 @@ const Features = () => {
                     />
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="div">
-                        Lizard
+                        Smiles!
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
+                      &#8377;10000+ Raised 10% completed &#8377;100000 Required
                       </Typography>
                     </CardContent>
                     <CardActions>
                       <Button size="small">Share</Button>
-                      <Button size="small">Learn More</Button>
+                      <Button size="small" onClick = {() => setStep(3)}>Learn More</Button>
                     </CardActions>
                   </Card>
             ))}

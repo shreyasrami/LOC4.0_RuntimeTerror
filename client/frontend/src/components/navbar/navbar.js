@@ -13,14 +13,15 @@ const NavBar = ({user,setNgoFundingData,setNgoEventData}) => {
             navigate('/homepage')
         }
         else if(step === 2){
-            const getDonarData = async() => {
-                try{
+            navigate('/donorpage')
+            // const getDonarData = async() => {
+            //     try{
 
-                }
-                catch(err){
+            //     }
+            //     catch(err){
 
-                }
-            }
+            //     }
+            // }
         }
         else if(step === 3){
             const getNgoData = async() => {
@@ -79,7 +80,7 @@ const NavBar = ({user,setNgoFundingData,setNgoEventData}) => {
 
         <Navbar bg="light" expand="lg">
   <Container>
-    <Navbar.Brand href="#home">Smiless!!</Navbar.Brand>
+    <Navbar.Brand href="#home">Muskurahat!</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">

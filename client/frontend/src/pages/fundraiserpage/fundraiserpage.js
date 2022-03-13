@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -10,7 +10,9 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import {connect} from 'react-redux'
-
+import { useNavigate } from 'react-router-dom';
+import Raise from '../../components/forms/raise'
+import LaunchEvents from '../../components/forms/launchevents';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,7 +41,23 @@ const useStyles = makeStyles(theme => ({
 
 const FundRaiser = ({ngoFundingData,ngoEventData}) => {
   const classes = useStyles();
+  const [step,setStep] = useState(5)
   const cards=[1,2,3,4,5]
+  const navigate = useNavigate()
+  useEffect(() => {
+    if(step == 1){
+      // <Raise />
+      navigate('/raise')
+    }
+    else if(step == 2){
+      // <LaunchEvents />
+      navigate('/launchevents')
+    }
+    else if(step == 3){
+      navigate('/individualCard')
+    }
+  },[step])
+    
   return (
 
     <>
@@ -90,64 +108,62 @@ const FundRaiser = ({ngoFundingData,ngoEventData}) => {
 
     <Container  component="section" maxWidth="lg" className={classes.root}>
     
-      <Button style={{backgroundColor:'#14274E' , color:'white', height:'50px', width:'1200px' , position :'sticky', marginBottom:'20px'}}variant="contained" disabled>
+      <Button style={{backgroundColor:'#14274E' , color:'white', height:'50px', width:'1200px' , position :'sticky', marginBottom:'20px'}}variant="contained" onClick={() => setStep(1)}>
        Start a fundraiser!
       </Button>
    
       <Grid container spacing={3} alignItems="stretch">
    
-            {ngoFundingData.map((card) => (
+            {cards.map((card) => (
                   <Card sx={{ maxWidth: 345 }} className='m-2'>
                     <CardMedia
                       component="img"
                       height="140"
-                      image={`http://127.0.0.1:8000/${card.image}`}
+                      // image={`http://127.0.0.1:8000/${card.image}`}
                       alt="green iguana"
                     />
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="div">
-                        Lizard
+                        Smiles!
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
+                      &#8377;10000+ Raised 10% completed &#8377;100000 Required
                       </Typography>
                     </CardContent>
                     <CardActions>
                       <Button size="small">Share</Button>
-                      <Button size="small">Learn More</Button>
+                      <Button size="small" onClick = {() => setStep(3)}>Learn More</Button>
                     </CardActions>
                   </Card>
             ))}
       </Grid>
       
-      <Button style={{backgroundColor:'#14274E' , color:'white', height:'50px', width:'1200px' , position :'sticky', marginTop :'20px',  marginBottom :'20px'}}variant="contained" disabled>
+      <Button style={{backgroundColor:'#14274E' , color:'white', height:'50px', width:'1200px' , position :'sticky', marginTop :'20px',  marginBottom :'20px'}}variant="contained" onClick = {() => setStep(2)}>
       Schedule an event!
     </Button>
     
     <Grid container spacing={3} alignItems="stretch">
    
     {
-        ngoEventData.map((card) => (
+        cards.map((card) => (
                   <Card sx={{ maxWidth: 345 }} className='m-2'>
                     <CardMedia
                       component="img"
                       height="140"
-                      image={`http://127.0.0.1:8000/${card.image}`}
+                      // image={`http://127.0.0.1:8000/${card.image}`}
                       alt="green iguana"
                     />
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="div">
-                        Lizard
+                        Smiles !
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
+                      &#8377;10000+ Raised 10% completed &#8377;100000 Required
                       </Typography>
                     </CardContent>
                     <CardActions>
                       <Button size="small">Share</Button>
-                      <Button size="small">Learn More</Button>
+                      <Button size="small" onClick = {() => setStep(3)}>Learn More</Button>
                     </CardActions>
                   </Card>
             ))}

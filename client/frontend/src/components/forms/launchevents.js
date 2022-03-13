@@ -38,7 +38,7 @@ const useStyles = makeStyles({
   },
 });
 
-function EventRegister() {
+function LaunchEvents () {
   const classes = useStyles();
   const [name, setName] = useState("");
   const [time, setTime] = useState("");
@@ -51,18 +51,18 @@ function EventRegister() {
   const [type, setType] = useState("");
   // const [name, setName] = useState("");
 
-  const LaunchEvents = async () => {
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        // courseId: match.params.id,
-        // name: name,
-        // email: email,
-        // number: number,
-        // description: description,
-      }),
-    };
+  const handleSubmit= async () => {
+    // const handleSubmit = () => {
+    //   // method: "POST",
+    //   // headers: { "Content-Type": "application/json" },
+    //   // body: JSON.stringify({
+    //     // courseId: match.params.id,
+    //     // name: name,
+    //     // email: email,
+    //     // number: number,
+    //     // description: description,
+    //   }),
+    // };
     // setPublicIdd(response.data.secure_url);
     // fetch(`http://localhost:8080/contact/contacForm`, requestOptions)
     //   .then((response) => {
@@ -214,9 +214,9 @@ function EventRegister() {
                       label: classes.label,
                     }}
                     fullWidth
-                    onClick={FormSubmitHandler}
+                    
                   >
-                    Submit
+                    Schedule an event!
                   </Button>
                 </Grid>
               </Grid>
